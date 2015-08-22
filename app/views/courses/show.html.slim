@@ -2,6 +2,7 @@ section.course-heading.ui.padded.raised.segment.top.attached
   .ui.container
     .ui.vertical.buttons.right.floated
       = link_to 'View', view_course_path(@course), class: 'ui positive button' if can? :view, @course
+      = link_to 'FAQs', course_faq_path(@course.id), class: 'ui button' if can? :view, @course
       = link_to 'Edit', edit_course_path(@course), class: 'ui button', remote: true if can? :edit, @course
 
     = image_tag @course.category.image.url, class: 'ui right floated tiny image'

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
         get '/update_outcome/:outcome_id' => 'topics#update_outcome', as: :outcome
       end
     end
+    resource :faq, only: [:show, :edit, :update ]
   end
 
   get :search, to: 'search#index'

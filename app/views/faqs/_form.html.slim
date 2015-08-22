@@ -1,0 +1,4 @@
+= simple_form_for @faq, url: course_faq_path(@faq.course), remote: true do |f|
+  = f.input :title
+  = f.input :content, as: :markdown
+  = f.submit class: 'ui positive button'

@@ -37,6 +37,8 @@ class Course < ActiveRecord::Base
   has_many :course_topics, -> { order('course_topics.order ASC') }
   has_many :topics, through: :course_topics
 
+  has_one :faq
+
   def self.categories_for(courses = Course.all)
     Category.
         joins(:courses).

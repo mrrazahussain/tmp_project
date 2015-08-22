@@ -1,0 +1,15 @@
+section.course-heading.ui.padded.raised.segment.top.attached
+  .ui.container
+    .ui.vertical.buttons.right.floated
+      = link_to 'Edit FAQ', edit_course_faq_path(@faq.course), class: 'ui positive button', remote: true if can? :edit, @faq.course
+    h2.ui.header
+      = @faq.course.title
+    = render partial: 'shared/breadcrumbs', locals: {elements: (@category.ancestors.reverse << @category).collect { |parent| [parent.title, category_path(parent)]}, last_element: @faq.title}
+section.course-content
+  .ui.grid.container
+    .sixteen.wide.column
+      section.padding.small.top.bottom
+        h1.ui.header = @faq.title
+        = raw Redcarpet::Markdown.new(NextLMS::MarkdownParser, {strikethrough: true, fenced_code_blocks: true}).render(@faq.content.to_s)
+  style
+    = Pygments.css
