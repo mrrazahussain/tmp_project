@@ -1,5 +1,5 @@
 ActiveAdmin.register Course do
-  permit_params :title, :summary, :image, :category_id, author_ids: []
+  permit_params :title, :summary, :image, :category_id, :attachments, author_ids: []
 
   index do
     selectable_column
@@ -14,12 +14,14 @@ ActiveAdmin.register Course do
 
   filter :title
 
-  form do |f|
+  form html: { multipart: true } do |f|
     f.inputs "Course Details" do
       f.input :title
       f.input :image, as: :file
       f.input :category, collection: options_for_categories_dropdown
       f.input :authors, as: :select2_multiple
+      file_field_tag("course_attachments", multiple: true, name: "course[course_attachments_attributes][][]")
+      # f.input :attachments, as: :file
       f.input :summary
     end
     f.actions
