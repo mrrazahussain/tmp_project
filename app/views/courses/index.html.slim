@@ -1,0 +1,13 @@
+.ui.grid.container.padding.small.bottom
+  .four.wide.column
+    .ui.vertical.fluid.pointing.menu
+      a.item href=courses_path class="#{'active' if @selected_categories.blank?}"
+        | All
+        .ui.label = Course.count
+      - Category.courses_categories.each do |cat|
+        a.item href=courses_path(categories: cat.id) class="#{'active' if @selected_categories.include?(cat.id.to_s)}"
+          = cat.title
+          .ui.label = cat.courses.count
+  .twelve.wide.column
+    .ui.grid
+      = render partial: 'shared/courses_list', locals: {courses: @courses, num_items: 'three'}

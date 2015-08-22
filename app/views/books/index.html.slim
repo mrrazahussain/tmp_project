@@ -1,0 +1,12 @@
+.ui.grid.container
+  .four.wide.column
+    .ui.vertical.fluid.pointing.menu
+      a.item href=books_path class="#{'active' if @selected_categories.blank?}"
+        | All
+        .ui.label = Book.count
+      - Category.books_categories.each do |cat|
+        a.item href=books_path(categories: cat.id) class="#{'active' if @selected_categories.include?(cat.id.to_s)}"
+          = cat.title
+          .ui.label = cat.books.count
+  .twelve.wide.column
+    = render partial: 'shared/books_list', locals: {books: @books, num_items: 'five'}

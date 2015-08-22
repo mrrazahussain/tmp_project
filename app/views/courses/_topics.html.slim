@@ -1,0 +1,5 @@
+- topics.each do |topic|
+  li.topic
+    = editable_topic topic, parent_topic
+    - if topic.children.present?
+      ol = render partial: 'topics', locals: { topics: topic.children, parent_topic: topic }

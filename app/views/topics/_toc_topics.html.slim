@@ -1,0 +1,5 @@
+- topics.each do |topic|
+  li.topic
+    = link_to topic.title, course_topic_path(@course, topic)
+    - if topic.children.present?
+      ol = render partial: 'topics/toc_topics', locals: {topics: topic.children, parent_topic: topic}

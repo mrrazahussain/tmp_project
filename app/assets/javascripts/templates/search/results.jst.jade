@@ -1,0 +1,23 @@
+.ui.tabluar.menu
+	a.item.active(data-tab='book')
+		| Books
+		.ui.label= books.count
+
+
+div(data-tab='book')
+	.ui.list
+		for book in books.results
+			.item
+				.header= book.meta.book_title
+				.list
+					for page in book.pages
+						.item
+							.header
+								| Page
+								= page.number
+							.description
+								for phrase in page.highlight
+									| ...
+									span!= phrase
+									| ...
+

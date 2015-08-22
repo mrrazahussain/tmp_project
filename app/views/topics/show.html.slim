@@ -1,0 +1,51 @@
+section.course-heading.ui.padded.raised.segment.top.attached
+  .ui.container
+    .ui.vertical.buttons.right.floated
+      = link_to 'Edit Topic', edit_course_topic_path(@course, @topic), class: 'ui button', remote: true if can? :edit, @course
+
+    = image_tag @course.category.image.url, class: 'ui right floated tiny image'
+    h2.ui.header
+      = @course.title
+
+    .ui.tag.labels
+      - @course.tag_list.each do |tag|
+        .ui.label = tag
+    = render partial: 'shared/breadcrumbs', locals: {elements: (@category.ancestors.reverse << @category).collect { |parent| [parent.title, category_path(parent)] }, last_element: @course.title}
+
+section.course-content
+  .ui.grid.container
+    .four.wide.column
+      section.padding.small.top.bottom
+        .toc.tree#course-toc data-tree-data=@course.toc.to_json
+
+    .twelve.wide.column
+      section.padding.small.top.bottom
+        h1.ui.header = @topic.title
+        = raw Redcarpet::Markdown.new(NextLMS::MarkdownParser, {strikethrough: true, fenced_code_blocks: true}).render(@topic.content.to_s)
+
+        - if @topic.links.present? or  @topic.outcomes.present?
+          .ui.piled.fluid.segments
+            - if @topic.links.present?
+              .ui.segment
+                .ui.header Further Reading
+                ol
+                  - @topic.links.each do |link|
+                    li = book_reference_link(link.url)
+            - if @topic.outcomes.present?
+              .ui.segment
+                .ui.header Outcomes
+                .ui.form
+                  - @topic.outcomes.each do |out|
+                    .inline.field
+                      .ui.checkbox
+                        input type="checkbox" class="outcome" checked=('checked' if out.completed_for?(current_user)) data-url=outcome_course_topic_path(@course, @topic, out) disabled=('disabled' if cannot?(:update_outcome, @topic))
+                        label = out.content
+
+        .ui.fluid.buttons
+          - unless @topic.previous.nil?
+            a.ui.button href=course_topic_path(@course, @topic.previous) Previous
+          - unless @topic.next.nil?
+            a.ui.button href=course_topic_path(@course, @topic.next) Next
+
+  style
+    = Pygments.css

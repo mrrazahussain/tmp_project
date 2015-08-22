@@ -1,0 +1,38 @@
+doctype html
+html
+  head
+    title NextLms
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    = csrf_meta_tags
+      / HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+      / WARNING: Respond.js doesn't work if you view the page via file://
+    /[if lt IE 9]
+      script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"
+      script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"
+
+  body class="application_layout #{params[:controller]} #{params[:controller]}_#{params[:action]}"
+    .ui.stackable.top.fixed.large.menu
+      .ui.container
+        .header.item
+          = image_tag 'themes/default/logo.png', width: "150px"
+        = active_link_to 'Dashboard', root_path, class: 'item'
+        = active_link_to 'Courses', courses_path, class: 'item'
+        = active_link_to 'Library', books_path, class: 'item'
+        = active_link_to 'Media', '#', class: 'item'
+        .right.menu
+          a.item href=my_courses_path My Courses
+          .ui.dropdown.item
+            = current_user.full_name
+            i.dropdown.icon
+            .menu
+              a.item href=profile_path Profile
+              a.item href=destroy_user_session_path Logout
+
+    = render partial: 'layouts/flash'
+    = yield
+
+    footer
+      .ui.container
+        | &copy; All Rights Reserved

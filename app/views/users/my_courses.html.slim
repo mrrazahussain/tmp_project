@@ -1,0 +1,11 @@
+.ui.grid.container
+  .four.wide.column
+    .ui.vertical.fluid.pointing.menu data-behavior="tabs" data-tab-context='#tab-panels'
+      a.item.active data-tab='teaching' Teaching Courses
+      a.item data-tab='enrolled' Enrolled Courses
+  .twelve.wide.column#tab-panels
+    .ui.tab.active data-tab='teaching'
+      = render partial: 'shared/courses_list', locals: {courses: @user.authored_courses, num_items: 'three'}
+
+    .ui.tab data-tab='enrolled'
+      = render partial: 'shared/courses_list', locals: {courses: @user.enrolled_courses, num_items: 'three'}

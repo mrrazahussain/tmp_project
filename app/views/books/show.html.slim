@@ -1,0 +1,3 @@
+= render partial: 'layouts/breadcrumbs', locals: {elements: (@category.ancestors.reverse << @category).collect { |parent| [parent.title, category_path(parent)] }, last_element: @book.title}
+
+= book_frame(@book_reference)

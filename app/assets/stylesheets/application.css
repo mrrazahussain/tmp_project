@@ -1,0 +1,27 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require codemirror
+ *= require plugins/jquery/jquery.fileupload.css
+ *= require editable/bootstrap-editable
+ *= require plugins/jquery/jquery.tagsinput
+ *= require plugins/jstree/default/style
+ *= require plugins/jstree/proton/style
+ *= require select2
+ *= require courses
+ *= require books
+ *= require categories
+ *= require search
+ *= require semantic_ui/semantic_ui
+ *= require next-lms/themes/default/style
+ *= require_self
+ */

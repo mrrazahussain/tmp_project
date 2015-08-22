@@ -1,0 +1,14 @@
+- num_items = num_items || 'four'
+
+.ui.doubling.cards class=num_items
+  - courses.each do |course|
+    .card
+      .content
+        = image_tag course.category.image.url, class: 'right floated tiny ui image'
+        .header = course.title
+        .meta = course.category.title
+        .description = course.summary.try(:truncate, 150)
+
+      a.ui.bottom.attached.button href=course_path(course)
+        i.newspaper.icon
+        | View

@@ -1,0 +1,12 @@
+- num_items = num_items || 'six'
+
+.ui.doubling.cards class=num_items
+  - books.each do |book|
+    .card
+      = image_tag(book.cover.url(:thumb))
+      .content
+        .description
+          h4 = book.title
+      a.ui.bottom.attached.button href=book_url(book)
+        i.book.icon
+        | Read

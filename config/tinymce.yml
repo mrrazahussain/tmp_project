@@ -1,0 +1,12 @@
+menubar: false
+toolbar:
+  - bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | formatselect fontsizeselect,
+  - cut copy paste | searchreplace | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor videobutton imageselector uploadimage code | insertdatetime preview | forecolor backcolor table | hr removeformat | subscript superscript | charmap emoticons | print fullscreen | ltr rtl | spellchecker | visualchars visualblocks nonbreaking template pagebreak restoredraft image | link
+toolbar_items_size:
+  - small
+style_formats: [
+  {title: 'Bold text', inline: 'strong'},
+]
+plugins:
+  - image
+  - link

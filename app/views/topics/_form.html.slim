@@ -1,0 +1,30 @@
+= simple_form_for @topic, url: course_topic_path(@course, @topic), remote: true do |f|
+  = f.input :title
+  = f.input :content, as: :markdown
+
+
+  div
+    = link_to_add_association f, :links,
+                              class: 'ui positive tiny icon button right floated',
+                              'data-association-insertion-method' => 'append',
+                              'data-association-insertion-node' => '#link-fields' do
+      i.add.icon
+    h3 Links
+
+  #link-fields
+    = f.simple_fields_for :links do |link|
+      = render 'link_fields', f: link
+
+  div
+    = link_to_add_association f, :outcomes,
+                              class: 'ui positive tiny icon button right floated',
+                              'data-association-insertion-method' => 'append',
+                              'data-association-insertion-node' => '#outcome-fields' do
+      i.add.icon
+    h3 Outcomes
+
+  #outcome-fields
+    = f.fields_for :outcomes do |outcome|
+      = render 'outcome_fields', f: outcome
+
+  = f.submit class: 'ui positive button'

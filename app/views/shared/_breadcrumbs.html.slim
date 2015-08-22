@@ -1,0 +1,9 @@
+.ui.breadcrumb
+  a.section href=courses_path  Courses
+  .divider
+    | /
+  - elements.each do |text, path|
+    a.section href=path = text
+    .divider
+      | /
+  a.section.active = last_element

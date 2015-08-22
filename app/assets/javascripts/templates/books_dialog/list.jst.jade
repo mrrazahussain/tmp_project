@@ -1,0 +1,16 @@
+if books_data.length < 1
+	p= 'No book found in this category'
+else
+	form#select-book-form
+		.row
+			each book in books_data
+				.col-md-4
+					.thumbnail
+						img(src=book.cover_url)
+						.caption
+							h4= book.title
+							input(type="radio", name="book_id", value=book.id)
+		.form-group
+			label(for="book-pages") Pages
+			input.form-control#book-pages
+			span.helpBlock Use patter like 1-2 or 1,3 or mix these like 1-2,4,5,10-11

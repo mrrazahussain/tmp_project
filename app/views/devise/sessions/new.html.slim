@@ -1,0 +1,7 @@
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  = f.input :username, required: false, autofocus: true, label: false, placeholder: 'Username', wrapper: :semantic_icon, icon: 'user'
+  = f.input :password, required: false, label: false, placeholder: 'Password', wrapper: :semantic_icon, icon: 'lock'
+  //= f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+  = f.button :submit, 'Log in', class: 'ui fluid large teal submit button'
+
+= render 'devise/shared/links'

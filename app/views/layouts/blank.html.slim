@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title NextLms
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    = csrf_meta_tags
+      / HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+      / WARNING: Respond.js doesn't work if you view the page via file://
+    /[if lt IE 9]
+      script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"
+      script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"
+
+  body class="blank_layout #{params[:controller]} #{params[:controller]}_#{params[:action]}"
+    .ui.middle.aligned.center.aligned.grid
+      .column style="width: 450px"
+        h2.ui.teal.image.header
+          = image_tag 'themes/default/logo.png', style: 'width: 150px'
+        .ui.stacked.segment
+          = render partial: 'layouts/flash'
+          = yield
+
+        p &copy; All Rights Reserved

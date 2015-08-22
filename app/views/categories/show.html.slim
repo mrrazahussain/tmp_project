@@ -1,0 +1,28 @@
+= render partial: 'layouts/breadcrumbs', locals: { elements: @category.ancestors.reverse.collect {|parent| [parent.title, category_path(parent)]}, last_element: @category.title }
+.container
+  .row
+    .col-md-10
+      h1 = @category.title
+      p = @category.description
+    .col-md-2
+      = image_tag @category.image.url(:medium), class: 'pull-left'
+  - unless @sub_categories.blank?
+    .row
+      - @sub_categories.each do |cat|
+        .col-md-3
+          a href="#{category_path(cat.id)}"
+            = image_tag cat.image.url(:thumb), class: 'pull-left'
+            h4 = cat.title
+  h3
+    | #{@category.title}'s courses
+
+  -unless @courses.blank?
+    .row
+      - @courses.each do |course|
+        .col-md-3
+          a href="#{course_path(course.id)}"
+            = image_tag course.image.url(:thumb), class: 'pull-left'
+            h4 = course.title
+          p.small = course.summary.truncate(90)
+  - else
+    p No courses found in this category

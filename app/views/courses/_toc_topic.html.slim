@@ -1,0 +1,3 @@
+.title = topic.title
+- if topic.children.present?
+  .content = render partial: 'courses/toc_topic', collection: topic.children, as: :topic

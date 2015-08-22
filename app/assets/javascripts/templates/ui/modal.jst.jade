@@ -1,0 +1,15 @@
+- var title = title
+- var body = body
+- var footer = footer
+
+.ui.modal
+	i.close.icon
+	if title
+		.header= title
+	.content!= body
+	if footer && footer == 'default'
+		.actions
+			.ui.button Cancel
+			.ui.button Ok
+	else if footer
+		.actions= footer

@@ -1,0 +1,7 @@
+.ui.action.input.nested-fields
+  = f.text_field :url
+  select.ui.selection.dropdown
+    option URL
+    option Book
+  = link_to_remove_association f, class: 'ui grey icon button' do
+    i.trash.icon

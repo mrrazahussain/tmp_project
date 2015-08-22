@@ -1,0 +1,21 @@
+section.course-heading.ui.padded.raised.segment.top.attached
+  .ui.container
+    .ui.vertical.buttons.right.floated
+      = link_to 'View', view_course_path(@course), class: 'ui positive button' if can? :view, @course
+      = link_to 'Edit', edit_course_path(@course), class: 'ui button', remote: true if can? :edit, @course
+
+    = image_tag @course.category.image.url, class: 'ui right floated tiny image'
+    h2.ui.header
+      = @course.title
+
+    .ui.tag.labels
+      - @course.tag_list.each do |tag|
+        .ui.label = tag
+    = render partial: 'shared/breadcrumbs', locals: {elements: (@category.ancestors.reverse << @category).collect { |parent| [parent.title, category_path(parent)] }, last_element: @course.title}
+
+section.course-detail.padding.small.top.bottom
+  .ui.container
+    = @course.summary
+
+    h3 Table of Contents
+    .toc.tree#course-toc data-tree-data=@course.toc.to_json

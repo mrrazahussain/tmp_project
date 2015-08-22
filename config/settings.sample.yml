@@ -1,0 +1,12 @@
+
+development:
+ search_server:
+  url:
+  api_key:
+  js_api_key:
+
+production:
+ search_server:
+  url:
+  api_key:
+  js_api_key:

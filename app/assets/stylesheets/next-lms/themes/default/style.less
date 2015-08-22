@@ -1,0 +1,57 @@
+body {
+  background: #EEE;
+  > .grid {
+    height: 100%;
+  }
+  
+  &.application_layout {
+    margin-top: 45px;
+  }
+
+  &.blank_layout {
+
+  }
+}
+
+footer {
+  height: 100px;
+  vertical-align: middle;
+  padding-top: 30px;
+  background: #3f4041;
+  color: #a5a6a7;
+}
+
+ol.numbered-list {
+  padding-left: 20px;
+  counter-reset: item;
+
+  > li {
+    display: block;
+
+    &:before {
+      content: counters(item, ".") ". ";
+      counter-increment: item;
+    }
+  }
+}
+
+.bg {
+  &.white {
+    background: #FFF;
+  }
+  &.gray {
+    background: #EFEFEF;
+  }
+}
+
+.padding {
+  &.small {
+    &.top {
+      padding-top: 20px;
+    }
+    &.bottom {
+      padding-bottom: 20px;
+    }
+  }
+}
+

@@ -1,0 +1,34 @@
+section.stats.padding.small.top.bottom
+  .ui.container
+    .ui.four.statistics
+      .ui.statistic
+        .value = Course.count
+        .label Courses
+      .ui.statistic
+        .value = Book.count
+        .label Books
+      .ui.statistic
+        .value = User.specialists.count
+        .label Specialists
+      .ui.statistic
+        .value = User.count - User.specialists.count
+        .label Users
+
+.ui.horizontal.divider.padding.small.top Popular Courses
+section.courses.padding.small.top.bottom
+  .ui.container
+    = render partial: 'shared/courses_list', locals: {courses: @courses, show_filters: false}
+
+  .ui.horizontal.divider.padding.small.top Popular Books
+
+section.books.padding.small.top.bottom
+  .ui.container
+    = render partial: 'shared/books_list', locals: {books: @books, show_filters: false}
+
+.ui.horizontal.divider.padding.small.top Explore Further
+section.categories.padding.small.top.bottom
+  .ui.container
+    .ui.tiny.spaced.images
+      - @categories.each do |cat|
+        a href=category_url(cat)
+          = image_tag cat.image.url(:thumb)

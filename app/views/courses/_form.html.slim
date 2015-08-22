@@ -1,0 +1,19 @@
+.ui.tabular.menu.top.attached
+  a.active.item data-tab="info" Information
+  a.item data-tab="toc" TOC
+
+.ui.bottom.attached.tab.segment.active data-tab="info"
+  = simple_form_for @course, remote: true do |f|
+    = f.input :title
+    .two.fields
+      = f.association :category, collection: options_for_categories_dropdown, disabled: true
+      = f.input :tag_list, as: :tags, collection: Course.all_tags.pluck(:name)
+    = f.input :summary
+
+    = f.submit class: 'ui positive button'
+
+.ui.bottom.attached.tab.segment data-tab="toc"
+  .toc.tree.builder#course-toc data-tree-data=@course.toc.to_json
+
+  .ui.divider
+  a.ui.button.positive#update-toc data-course-url=update_toc_course_url(@course) Update TOC
